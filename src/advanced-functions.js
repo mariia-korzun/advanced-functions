@@ -1,16 +1,34 @@
-// Cache function
-function cache(func) {
-    // do your magic here
+//=============================================
+// ------------------------------------ TASK №1
+//=============================================
+const cache = (func) => {
+    // Do your magic here
 }
 
-// Object "ladder"
+//=============================================
+// ------------------------------------ TASK №2
+//=============================================
 const ladder = {
-    // do your magic here
+    // Do your magic here
 };
 
-// ApplyAll function
-function applyAll(func, arg1, arg2) {
-    // do your magic here
+//=============================================
+// ------------------------------------ TASK №3
+//=============================================
+const applyAll = () => {
+    // Do your magic here
+    return;
+}
+const sum = () => {
+    // Do your magic here
+    return;
 }
 
-module.exports = {cache, ladder, applyAll}
+const mul = () => {
+    // Do your magic here
+    return;
+}
+
+//=============================================
+
+module.exports = { cache, ladder, applyAll, sum, mul }

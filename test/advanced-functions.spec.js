@@ -1,60 +1,82 @@
-const cache = require('../src/advanced-functions').cache;
-const ladder = require('../src/advanced-functions').ladder;
-const applyAll = require('../src/advanced-functions').applyAll;
+const {cache, ladder, applyAll, sum, mul} = require('../src/advanced-functions');
 require('mocha-sinon');
-const sum = require('../src/advanced-functions').sum;
-const mul = require('../src/advanced-functions').mul;
+const sinon = require('sinon');
 
-const ladderResult1 = {...ladder}
-    .up()
-    .up()
-    .down()
-    .up()
-    .down()
-    .showStep()
 
-const ladderResult2 = {...ladder}
-    .up()
-    .up()
-    .down()
-    .up()
-    .up()
-    .showStep()
 
-const ladderResult3 = {
-    step: 1,
-    up() {
-        this.step++;
-        return this
-    },
-    down() {
-        this.step--;
-        return this
-    },
-    showStep() {
-        console.log(this.step);
-        return this
-    }
-};
+describe('cache function', () => {
+    it('should call complex function', () => {
+        let complexFunction = sinon.stub().callsFake((arg1, arg2) => {
+            return arg1 + arg2;
+        });
+        let cachedFunction = cache(complexFunction);
+        cachedFunction(1, 2);
+        sinon.assert.calledWith(complexFunction, 1, 2);
+        sinon.assert.calledOnce(complexFunction);
+    });
+
+    it('should not call complex function again', () => {
+        let complexFunction = sinon.stub().callsFake((arg1, arg2) => {
+            return arg1 + arg2;
+        });
+        let cachedFunction = cache(complexFunction);
+        cachedFunction(1, 2);
+        let ret = cachedFunction(1, 2);
+        expect(ret).to.be.equal(3);
+        sinon.assert.calledWith(complexFunction, 1, 2);
+        sinon.assert.calledOnce(complexFunction);
+    });
+
+    it('should call complex function if arguments are different', () => {
+        let complexFunction = sinon.stub().callsFake((arg1, arg2) => {
+            return arg1 + arg2;
+        });
+        let cachedFunction = cache(complexFunction);
+        let ret1 = cachedFunction(1, 2);
+        expect(ret1).to.be.equal(3);
+        let ret2 = cachedFunction(1, 5);
+        expect(ret2).to.be.equal(6);
+        sinon.assert.calledWith(complexFunction, 1, 2);
+        sinon.assert.calledWith(complexFunction, 1, 5);
+        sinon.assert.calledTwice(complexFunction);
+    });
+})
 
 describe('Ladder object', () => {
     beforeEach(function () {
         this.sinon.stub(console, 'log');
     });
 
-    it('Should return an expected object', () => {
+    it('It should not return "undefined"', () => {
         const obj = {...ladder};
-        expect(obj.up()).to.eql(ladderResult3)
-    })
+        expect(obj.up()).to.not.be.equal(undefined);
+    });
+
+    it('It should not return "undefined"', () => {
+        const obj = {...ladder};
+        expect(obj.down()).to.not.be.equal(undefined);
+    });
 
     it('Should console log 1', () => {
-        ladderResult1.showStep();
+        const obj = {...ladder};
+        obj.up()
+            .up()
+            .down()
+            .up()
+            .down()
+            .showStep()
         expect(console.log.calledOnce).to.be.true;
         expect(console.log.calledWith(1)).to.be.true;
     });
 
     it('Should console log 3', () => {
-        ladderResult2.showStep();
+        const obj = {...ladder};
+        obj.up()
+            .up()
+            .down()
+            .up()
+            .up()
+            .showStep()
         expect(console.log.calledOnce).to.be.true;
         expect(console.log.calledWith(3)).to.be.true;
     });
@@ -75,37 +97,38 @@ describe('Ladder object', () => {
 })
 
 describe('applyAll function testing', () => {
-  it('Should return correct sum according to given arguments in function', () => {
-    expect(applyAll(sum,1,2,3))
-        .to.eql(6);
-  });
-  it('Should return correct sum according to given arguments in function', () => {
-    expect(applyAll(sum,22,232))
-        .to.eql(254);
-  });
-  it('Should return correct sum according to given arguments in function', () => {
-    expect(applyAll(sum,5,3,5,12,10,22,1,51,33))
-        .to.eql(142);
-  });
-  it('Should return correct sum according to given arguments in function', () => {
-    expect(applyAll(sum,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1))
-        .to.eql(17);
-  });
-  it('Should return correct mul according to given arguments in function', () => {
-    expect(applyAll(mul,21,2,5))
-        .to.eql(210);
-  });
-  it('Should return correct mul according to given arguments in function', () => {
-    expect(applyAll(mul,6,6))
-        .to.eql(36);
-  });
-  it('Should return correct mul according to given arguments in function', () => {
-    expect(applyAll(mul,5,2,12,1,6,32,31,88,121,4,2))
-        .to.eql(60841820160);
-  });
-  it('Should return correct mul according to given arguments in function', () => {
-    expect(applyAll(mul,3,2,1,0))
-        .to.eql(0);
-  });
+    it('Should return correct sum according to given arguments in function', () => {
+        expect(applyAll(sum, 1, 2, 3))
+            .to.eql(6);
+    });
+    it('Should return correct sum according to given arguments in function', () => {
+        expect(applyAll(sum, 22, 232))
+            .to.eql(254);
+    });
+    it('Should return correct sum according to given arguments in function', () => {
+        expect(applyAll(sum, 5, 3, 5, 12, 10, 22, 1, 51, 33))
+            .to.eql(142);
+    });
+    it('Should return correct sum according to given arguments in function', () => {
+        expect(applyAll(sum, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+            .to.eql(17);
+    });
+    it('Should return correct mul according to given arguments in function', () => {
+        expect(applyAll(mul, 21, 2, 5))
+            .to.eql(210);
+    });
+    it('Should return correct mul according to given arguments in function', () => {
+        expect(applyAll(mul, 6, 6))
+            .to.eql(36);
+    });
+    it('Should return correct mul according to given arguments in function', () => {
+        expect(applyAll(mul, 5, 2, 12, 1, 6, 32, 31, 88, 121, 4, 2))
+            .to.eql(60841820160);
+    });
+    it('Should return correct mul according to given arguments in function', () => {
+        expect(applyAll(mul, 3, 2, 1, 0))
+            .to.eql(0);
+    });
+
 });
 

@@ -1,7 +1,7 @@
-# Advanced_functions
+# Advanced_functions-with_tests
 
 ## TASK № 1
-### Write function "cache":
+### Write a function called "cache". It will be a function wrapper, which takes a function and caches its results depending on the arguments, that were applied to the function.
 ```js
 let complexFunction = function(arg1, arg2) {
 	return arg1 + arg2;  // just for example (any logic can be here)
@@ -9,7 +9,7 @@ let complexFunction = function(arg1, arg2) {
 
 let cachedFunction = cache(complexFunction);
 ```
-### For example:
+### Example:
 ```js
 cachedFunction('foo', 'bar'); // complex function should be executed
 cachedFunction('foo', 'bar'); // complex function should not be invoked again,
@@ -20,18 +20,18 @@ cachedFunction('foo', 'baz'); // should be executed,
 <hr>
 
 ## TASK № 2
-### Create object ladder with 3 methods “up”, “down” and “showStep”. Also it has property “step”. Step initially equal to 0. It should support chaining calls. Up/down - increasing/decreasing counter, showStep - showing current step counter with console.log()
+### Create an object called “ladder”. It should include 3 methods: “up”, “down” and “showStep”. Also it should have a  property called “step”. “Step” is initially equal to 0. It should support chaining calls. Up/down – increasing/decreasing “step”, showStep – showing current step counter with console.log().
 
-### For example:
+### Example:
 ```js
 ladder.up().up().down().up().showStep(); // 1+1-1+1 = 2
 ```
 <hr>
 
 ## TASK № 3
-### Write function applyAll(func, arg1, arg2...) which takes function (sum or mul) and arbitrary number of arguments. It should call func( write the realization of sum, mul) with all arguments and return result. Using of call method is mandatory.
+### Write a function called “applyAll”. It takes a function (sum or mul) and an arbitrary number of arguments. It should call a received function ( output the “sum” and “mul” functions) with all arguments and return result. Using of call method is mandatory.
 
-### For example:
+### Example:
 ```js
 applyAll(sum, 1, 2, 3); // -> sum(1, 2, 3) = 6
 applyAll(mul, 2, 3, 4); // -> mul(2, 3, 4) = 24

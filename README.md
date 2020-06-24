@@ -20,11 +20,11 @@ cachedFunction('foo', 'baz'); // should be executed,
 <hr>
 
 ## TASK № 2
-### Create an object called “ladder”. It should include 3 methods: “up”, “down” and “showStep”. Also it should have a  property called “step”. “Step” is initially equal to 0. It should support chaining calls. Up/down – increasing/decreasing “step”, showStep – showing current step counter with console.log().
+### Create an object called "forwardBackwardSteps”. It should include 3 methods: “forward", “backward", “revealStep”  one  property: “step”. Initial value of “step” is equal to 0. It should support chaining calls. "forward" – increasing "step", "backward" – decreasing “step”, "revealStep" – console.log current value of  "step".
 
 ### Example:
 ```js
-ladder.up().up().down().up().showStep(); // 1+1-1+1 = 2
+forwardBackwardSteps.forward().forward().backward().forward().revealStep(); // 1+1-1+1 = 2
 ```
 <hr>
 

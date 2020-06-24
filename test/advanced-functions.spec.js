@@ -1,4 +1,4 @@
-const {cache, ladder, applyAll, sum, mul} = require('../src/advanced-functions');
+const {cache, forwardBackwardSteps, applyAll, sum, mul} = require('../src/advanced-functions');
 require('mocha-sinon');
 const sinon = require('sinon');
 
@@ -42,58 +42,44 @@ describe('cache function', () => {
     });
 })
 
-describe('Ladder object', () => {
+describe('forwardBackwardStep object', () => {
     beforeEach(function () {
         this.sinon.stub(console, 'log');
     });
 
     it('It should not return "undefined"', () => {
-        const obj = {...ladder};
-        expect(obj.up()).to.not.be.equal(undefined);
+        const obj = {...forwardBackwardSteps};
+        expect(obj.forward()).to.not.be.equal(undefined);
     });
 
     it('It should not return "undefined"', () => {
-        const obj = {...ladder};
-        expect(obj.down()).to.not.be.equal(undefined);
+        const obj = {...forwardBackwardSteps};
+        expect(obj.backward()).to.not.be.equal(undefined);
     });
 
     it('Should console log 1', () => {
-        const obj = {...ladder};
-        obj.up()
-            .up()
-            .down()
-            .up()
-            .down()
-            .showStep()
+        const obj = {...forwardBackwardSteps};
+        obj.forward()
+            .forward()
+            .backward()
+            .forward()
+            .backward()
+            .revealStep()
         expect(console.log.calledOnce).to.be.true;
         expect(console.log.calledWith(1)).to.be.true;
     });
 
     it('Should console log 3', () => {
-        const obj = {...ladder};
-        obj.up()
-            .up()
-            .down()
-            .up()
-            .up()
-            .showStep()
+        const obj = {...forwardBackwardSteps};
+        obj.forward()
+            .forward()
+            .backward()
+            .forward()
+            .forward()
+            .revealStep()
         expect(console.log.calledOnce).to.be.true;
         expect(console.log.calledWith(3)).to.be.true;
     });
-
-    it('Should console log 1 and -1', () => {
-        const obj = {...ladder}
-        obj
-            .up()
-            .showStep()
-            .down()
-            .down()
-            .showStep();
-        expect(console.log.callCount).to.be.equal(2);
-        expect(console.log.calledWith(1)).to.be.true;
-        expect(console.log.calledWith(-1)).to.be.true;
-    });
-
 })
 
 describe('applyAll function testing', () => {

@@ -8,7 +8,7 @@ const cache = (func) => {
 //=============================================
 // ------------------------------------ TASK №2
 //=============================================
-const ladder = {
+const forwardBackwardSteps = {
     // Do your magic here
 };
 
@@ -17,18 +17,18 @@ const ladder = {
 //=============================================
 const applyAll = () => {
     // Do your magic here
-    return;
+
 }
 const sum = () => {
     // Do your magic here
-    return;
+
 }
 
 const mul = () => {
     // Do your magic here
-    return;
+
 }
 
 //=============================================
 
-module.exports = { cache, ladder, applyAll, sum, mul }
+module.exports = {cache, forwardBackwardSteps, applyAll, sum, mul}

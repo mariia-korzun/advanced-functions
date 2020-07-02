@@ -20,7 +20,7 @@ cachedFunction('foo', 'baz'); // should be executed,
 <hr>
 
 ## TASK № 2
-### Create an object called "forwardBackwardSteps”. It should include 3 methods: “forward", “backward", “revealStep”  one  property: “step”. Initial value of “step” is equal to 0. It should support chaining calls. "forward" – increasing "step", "backward" – decreasing “step”, "revealStep" – console.log current value of  "step".
+### Create an object called "forwardBackwardSteps”. It should include 3 methods: “forward", “backward", “revealStep”  one  property: “step”. Initial value of “step” is equal to 0. The object should support chaining calls. "forward" – increasing "step", "backward" – decreasing “step”, "revealStep" – console.log current value of  "step".
 
 ### Example:
 ```js

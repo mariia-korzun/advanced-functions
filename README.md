@@ -1,7 +1,7 @@
 # Advanced_functions-with_tests
 
 ## TASK № 1
-### Write a function called "cache". It will be a function wrapper, which takes a function and caches its results depending on the arguments, that were applied to the function.
+### Write a function called "cache". It will be a function wrapper, which takes a function and caches its results depending on the arguments that were applied to the function.
 ```js
 let complexFunction = function(arg1, arg2) {
 	return arg1 + arg2;  // just for example (any logic can be here)
@@ -20,7 +20,7 @@ cachedFunction('foo', 'baz'); // should be executed,
 <hr>
 
 ## TASK № 2
-### Create an object called "forwardBackwardSteps”. It should include 3 methods: “forward", “backward", “revealStep”  one  property: “step”. Initial value of “step” is equal to 0. The object should support chaining calls. "forward" – increasing "step", "backward" – decreasing “step”, "revealStep" – console.log current value of  "step".
+### Create an object called "forwardBackwardSteps”. It should include 3 methods: “forward", “backward", “revealStep” and one  property: “step”. Initial value of “step” is equal to 0. The object should support chaining calls on its methods. "forward" – increasing "step", "backward" – decreasing “step”, "revealStep" – console.log current value of "step".
 
 ### Example:
 ```js

@@ -1,15 +1,15 @@
 const cache = (func) => {
     let cahedArguments = []
-    return (...arguments) => {
+    return (...arg) => {
         let cahedObject = cahedArguments.find(cached => {
-            for (i = 0; i < arguments.length; i++) {
-                if (cached.arg[i] !== arguments[i]) { return false }
+            for (let i = 0; i < arg.length; i++) {
+                if (cached.arg[i] !== arg[i]) { return false }
             }
             return true
         })
         if (cahedObject) { return cahedObject.result }
-        let result = func(...arguments)
-        cahedArguments.push({ arg: arguments, result: result })
+        let result = func(...arg)
+        cahedArguments.push({ arg: arg, result: result })
         return result
     }
 }
@@ -27,19 +27,20 @@ const forwardBackwardSteps = {
     },
     revealStep() {
         console.log(this.step)
+        return this
     }
 };
 
 
-const applyAll = (func, ...arguments) => {
-   return func.call(null, ...arguments)
+const applyAll = (func, ...arg) => {
+   return func.call(null, ...arg)
 }
-const sum = (...arguments) => {
-    return arguments.reduce((sum, element) => sum + element, 0)
+const sum = (...arg) => {
+    return arg.reduce((sum, element) => sum + element, 0)
 }
 
-const mul = (...arguments) => {
-    return arguments.reduce((mul, element) => mul * element, 1)
+const mul = (...arg) => {
+    return arg.reduce((mul, element) => mul * element, 1)
 }
 
 module.exports = { cache, forwardBackwardSteps, applyAll, sum, mul }
